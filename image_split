@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#
+# This script split u-boot binary for secure boot
+
+# spiliting u-boot for BL1 (8KB -128 Byte)
+rm bl2*
+split -b 8064 u-boot.bin bl2.bin
+

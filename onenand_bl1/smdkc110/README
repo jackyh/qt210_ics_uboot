@@ -1,0 +1,23 @@
+#
+# THE CONTENT OF THIS DIRECTORY IS NOT VALID ANY MORE!!!
+# - bl1 is merged into u-boot main code.
+# - C110 EVT0 is not supported any more.
+# - djpark (2010.03.17)
+#
+
+#
+# TO DO:
+#	1. Move this module into onenand_ipl
+#
+# NOTE:
+# 	The size of BL1.bin SHOULD NOT exceed 2KB.
+#
+# djpark (2009.08.31)
+#
+
+Procedure:
+	./make all
+
+Output:
+	./BL1.bin.padding
+

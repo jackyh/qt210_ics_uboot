@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#
+# This script will create a u-boot binary for movinand/mmc boot
+#
+
+# padding to 512k the u-boot.bin
+cat u-boot.bin > u-boot-2x.bin
+cat u-boot.bin >> u-boot-2x.bin
+split -d -a 1 -b 512k u-boot-2x.bin u-boot-512k.bin
+
+# spiliting u-boot for BL1 (8kb)
+split -d -a 2 -b 8k u-boot.bin u-boot-8k.bin
+
+# creating empty env space (16kb)
+dd if=/dev/zero of=empty.env bs=16384 count=1 2> /dev/null
+
+# merging the bl1 and env with padded 512k binary
+cat empty.env >> u-boot-512k.bin0
+cat u-boot-8k.bin00 >> u-boot-512k.bin0
+cp u-boot-8k.bin00 bootstrap.bin
+
+# renaming and change mode
+mv u-boot-512k.bin0 u-boot-movi.bin
+chmod 777 u-boot-movi.bin
+
+# removing temp files
+rm -f u-boot-8k*
+rm -f u-boot-512k*
+rm -f u-boot-2x.bin
+rm -f empty.env
