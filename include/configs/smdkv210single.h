@@ -609,7 +609,7 @@
 /* LCD setting */
 //#define CFG_LCD_TL2796		// for C110 - narrow LCD
 #define CFG_LCD_NONAME1			// for V210 - wide LCD
-#define CFG_LCD_FBUFFER				(0x48000000)
+#define CFG_LCD_FBUFFER				(0x38000000)
 
 #define CONFIG_BOOTDELAY	3
 #if defined(CFG_FASTBOOT_NANDBSP)
