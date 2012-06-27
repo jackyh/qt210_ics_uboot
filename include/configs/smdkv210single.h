@@ -68,8 +68,8 @@
 
 /* skip to load BL2 */
 //#define FAST_BOOT		1
-
-#define MEMORY_BASE_ADDRESS	0x20000000
+/*hcj for dbg--mem start from 0x30000000 */
+#define MEMORY_BASE_ADDRESS	0x30000000
 
 /* input clock of PLL */
 #define CONFIG_SYS_CLK_FREQ	24000000	/* the SMDK6400 has 24MHz input clock */
@@ -592,7 +592,8 @@
 #define CFG_ENV_IS_IN_AUTO
 
 /* Fastboot variables */
-#define CFG_FASTBOOT_TRANSFER_BUFFER		(0x30000000)
+/* hcj for new mem layout */
+#define CFG_FASTBOOT_TRANSFER_BUFFER		(0x3F000000)
 #define CFG_FASTBOOT_TRANSFER_BUFFER_SIZE	(0x11000000)   /* 272MB */
 //#define CFG_FASTBOOT_TRANSFER_BUFFER_SIZE	(0x19000000)   /* 400MB */
 
@@ -615,7 +616,7 @@
 #if defined(CFG_FASTBOOT_NANDBSP)
 #define CONFIG_BOOTCOMMAND	"nand read C0008000 600000 400000; nand read 30A00000 B00000 180000; bootm C0008000 30A00000"
 #elif defined(CFG_FASTBOOT_SDMMCBSP)
-#define CONFIG_BOOTCOMMAND	"movi read kernel C0008000; movi read rootfs 30A00000 180000; bootm C0008000 30A00000"
+#define CONFIG_BOOTCOMMAND	"movi read kernel C0008000; movi read rootfs 40A00000 180000; bootm C0008000 40A00000"
 #endif
 
 #endif	/* __CONFIG_H */
